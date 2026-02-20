@@ -52,6 +52,154 @@
     .brand h1{font-size:18px; margin:0}
     .brand .muted{font-size:13px}
 
+    .exp-toggle{
+  width:100%;
+  text-align:left;
+  padding:14px 18px;
+  margin-top:16px;
+  font-size:15px;
+  font-weight:600;
+  color:#020617;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:all .3s ease;
+}
+
+.exp-toggle:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(2,6,23,0.6);
+}
+.osint-tree {
+  margin-top: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.osint-root {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e5e7eb;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  cursor: default;
+}
+
+.osint-branch {
+  margin: 0;
+  margin-left: 30px;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.osint-branch::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: rgba(148, 163, 184, 0.4);
+}
+
+.osint-branch-title {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e5e7eb;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  padding-right: 24px;
+}
+
+.osint-branch-title:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.osint-branch-title::after {
+  content: '▶';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #94a3b8;
+  transition: transform 0.3s ease;
+}
+
+.osint-branch-title.expanded::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.osint-children {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: 30px;
+  margin-top: 8px;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width 0.4s ease, opacity 0.3s ease 0.1s;
+  pointer-events: none;
+}
+
+.osint-children.expanded {
+  max-width: 5000px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.osint-child {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.03);
+  color: #cbd5e1;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.osint-child::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: rgba(148, 163, 184, 0.3);
+}
+
+.osint-child:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #e5e7eb;
+}
+.exp-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s ease;
+  margin-top:10px;
+}
+
+.exp-content ul{
+  margin-top:12px;
+}
+
     nav{display:flex; gap:10px; flex-wrap:wrap}
 
     nav a{
@@ -67,7 +215,7 @@
       background:linear-gradient(135deg,var(--accent),var(--accent-2));
       color:#020617;
     }
-
+    
     /* ====== MAIN LAYOUT ====== */
     main{
       max-width:1200px;
@@ -101,6 +249,7 @@
       font-size:26px;
       background:linear-gradient(135deg,var(--accent),var(--accent-2));
       -webkit-background-clip:text;
+      background-clip:text;
       color:transparent;
     }
 
@@ -142,6 +291,48 @@
     .hero p{font-size:16px}
 
     /* ====== SKILLS ====== */
+    .tree {
+  margin-top: 20px;
+}
+
+.tree-item {
+  margin-bottom: 18px;
+  border-left: 2px solid var(--border);
+  padding-left: 14px;
+  position: relative;
+}
+
+.tree-branch {
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  transition: all .3s ease;
+}
+
+.tree-branch:hover {
+  background: linear-gradient(135deg,var(--accent),var(--accent-2));
+  color: #020617;
+}
+
+.tree-children {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease;
+  margin-top: 8px;
+}
+
+.tree-children ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.tree-children li {
+  margin-bottom: 6px;
+  color: var(--muted);
+}
     .skill-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -170,6 +361,29 @@
 
     @media(max-width:900px){
       .hero{grid-template-columns:1fr; text-align:center}
+      
+      .osint-branch {
+        margin-left: 20px;
+      }
+      
+      .osint-branch::before {
+        left: -20px;
+        width: 15px;
+      }
+      
+      .osint-children {
+        margin-left: 20px;
+      }
+      
+      .osint-child::before {
+        left: -20px;
+        width: 15px;
+      }
+      
+      .osint-child {
+        font-size: 12px;
+        padding: 5px 10px;
+      }
     }
   </style>
 </head>
@@ -204,8 +418,8 @@
       <div>
         <h1>Hi, I'm Priya 👋</h1>
         <p class="muted">
-          Security Analyst with 1.5+ years of experience in <strong>Third-Party Risk Management</strong>,
-          <strong>SOC operations</strong>, <strong>security automation</strong>, and <strong>GRC</strong>
+          Security Professional with hands-on experience in <strong>Third-Party Risk Management</strong>,
+          <strong>SOC/Triage</strong>, <strong>Security automation</strong>, and <strong>Incident Response</strong>
           for enterprise and financial services clients.
         </p>
         <p>
@@ -222,27 +436,51 @@
 
   <!-- ===== EXPERIENCE ===== -->
   <section id="experience" class="section">
-    <div class="card">
-      <h2>Professional Experience</h2>
-      <h3>Ernst & Young (EY GDS) — Security Analyst</h3>
-      <div class="muted">Apr 2025 – Present | Bengaluru</div>
-      <ul>
-        <li>Conducted cybersecurity and compliance risk assessments for <strong>300+ third‑party vendors</strong> supporting US financial services clients.</li>
-        <li>Performed vendor due diligence across security domains including data protection, access control, incident response, and business continuity.</li>
-        <li>Designed and maintained <strong>XSOAR automation playbooks</strong> and dashboards with KPIs to track vendor risk posture.</li>
-        <li>Reviewed <strong>100+ daily breach, vulnerability, and threat advisories</strong>, coordinating remediation and reducing residual risk exposure.</li>
-        <li>Executed continuous monitoring for <strong>180+ critical vendors</strong> using RSA Archer, SecurityScorecard, and Ariba.</li>
-      </ul>
+  <div class="card">
+    <h2>Professional Experience</h2>
 
-      <h3>Indian Telecom Industries Limited — Graduate Trainee Engineer</h3>
-      <div class="muted">Mar 2023 – Sep 2023 | Bengaluru</div>
+    <h3>Ernst & Young (EY GDS) — Security Analyst</h3>
+    <div class="muted">Apr 2025 – Present | Bengaluru</div>
+
+    <!-- TPRM -->
+    <button class="exp-toggle">Third-Party Risk Management</button>
+    <div class="exp-content">
       <ul>
-        <li>Supported data center operations, system monitoring, and L1 incident triage.</li>
-        <li>Managed incident and service tickets using ServiceNow while adhering to ITIL processes.</li>
-        <li>Assisted in ISO 27001 compliance activities and audit preparation.</li>
+        <li>Assessed cybersecurity posture of <strong>~100 third-party vendors</strong> for a US financial services client, ensuring alignment with enterprise GRC & TPRM standards.</li>
+        <li>Reviewed daily breach and vulnerability advisories, initiating targeted vendor engagements and reducing residual risk exposure.</li>
+        <li>Performed continuous monitoring of <strong>30+ business-critical vendors</strong>, escalating high-risk findings to stakeholders.</li>
+        <li>Managed security deficiencies, tracked remediation SLAs, and delivered analytics-driven risk reports to senior consultants.</li>
+        <li>Executed continuous monitoring for <strong>50+ critical vendors</strong> using RSA Archer, SecurityScorecard, and Ariba.</li>
       </ul>
     </div>
-  </section>
+
+    <!-- SECURITY AUTOMATION -->
+    <button class="exp-toggle">Security Automation</button>
+    <div class="exp-content">
+      <ul>
+        <li>Implemented rule-based logic and developed automation playbooks and dashboards.</li>
+        <li>Automated threat intelligence ingestion and vendor risk tracking to improve operational efficiency.</li>
+      </ul>
+    </div>
+
+    <hr style="border:0;border-top:1px solid var(--border);margin:30px 0">
+
+    <h3>Indian Telecom Industries Limited — Graduate Trainee Engineer</h3>
+    <div class="muted">Mar 2023 – Sep 2023 | Bengaluru</div>
+
+    <!-- SOC -->
+    <button class="exp-toggle">Security Operation Centre</button>
+    <div class="exp-content">
+      <ul>
+        <li>Supported data centre operations of a government-owned enterprise across power, network, and security infrastructure.</li>
+        <li>Monitored SIEM alerts, performed L1 incident triage, and escalated true-positive incidents following SOC SOPs.</li>
+        <li>Maintained incident records and audit evidence in ServiceNow, supporting ISO 27001 compliance and audit readiness.</li>
+        <li>Monitored network devices and firewalls, contributing to <strong>99.98% service uptime</strong>.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
 
   <!-- ===== PROJECTS ===== -->
   <section id="projects" class="section">
@@ -267,22 +505,67 @@
 
   <!-- ===== SKILLS ===== -->
   <section id="skills" class="section">
-    <div class="card">
-      <h2>Skills & Tools</h2>
-      <div class="skill-grid">
-        <div class="skill-box">Third‑Party Risk Management (TPRM)</div>
-        <div class="skill-box">SOC Operations & Incident Response</div>
-        <div class="skill-box">Security Automation (XSOAR)</div>
-        <div class="skill-box">Continuous Vendor Monitoring</div>
-        <div class="skill-box">Threat Intelligence Analysis</div>
-        <div class="skill-box">GRC & Compliance (ISO 27001)</div>
-        <div class="skill-box">Splunk, CrowdStrike</div>
-        <div class="skill-box">RSA Archer, SecurityScorecard, Ariba</div>
-        <div class="skill-box">ServiceNow, ITIL Processes</div>
-        <div class="skill-box">MITRE ATT&CK, OWASP</div>
+  <div class="card">
+    <h2>Skills and Expertise</h2>
+
+    <div class="osint-tree">
+
+      <!-- Branch 1: Cyber Risk & Governance -->
+      <div class="osint-branch">
+        <div class="osint-branch-title">Cyber Risk & Governance</div>
+        <div class="osint-children">
+          <div class="osint-child">SecurityScorecard</div>
+          <div class="osint-child">RSA Archer</div>
+          <div class="osint-child">Vendor Risk Assessments</div>
+          <div class="osint-child">CVE Analysis</div>
+          <div class="osint-child">OSINT</div>
+          <div class="osint-child">ServiceNow</div>
+          <div class="osint-child">Ariba</div>
+        </div>
+      </div>
+
+      <!-- Branch 2: Threat Detection & Response -->
+      <div class="osint-branch">
+        <div class="osint-branch-title">Threat Detection & Response</div>
+        <div class="osint-children">
+          <div class="osint-child">Splunk SIEM</div>
+          <div class="osint-child">CrowdStrike EDR</div>
+          <div class="osint-child">MITRE ATT&CK</div>
+          <div class="osint-child">Cyber Kill Chain</div>
+          <div class="osint-child">Incident Response</div>
+          <div class="osint-child">Network Security</div>
+          <div class="osint-child">Wireshark</div>
+          <div class="osint-child">OpenVAS</div>
+        </div>
+      </div>
+
+      <!-- Branch 3: Security Automation & Engineering -->
+      <div class="osint-branch">
+        <div class="osint-branch-title">Security Automation & Engineering</div>
+        <div class="osint-children">
+          <div class="osint-child">Cortex XSOAR</div>
+          <div class="osint-child">Python</div>
+          <div class="osint-child">REST APIs</div>
+          <div class="osint-child">IOC Enrichment</div>
+          <div class="osint-child">Playbook Development</div>
+          <div class="osint-child">Threat Intelligence Integration</div>
+        </div>
+      </div>
+
+      <!-- Branch 4: Threat Intelligence Tools -->
+      <div class="osint-branch">
+        <div class="osint-branch-title">Threat Intelligence Tools</div>
+        <div class="osint-children">
+          <div class="osint-child">AbuseIPDB</div>
+          <div class="osint-child">Netlas</div>
+          <div class="osint-child">VirusTotal</div>
+          <div class="osint-child">Shodan</div>
+          <div class="osint-child">Phishing detection</div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ===== EDUCATION ===== -->
   <section id="education" class="section">
@@ -356,6 +639,47 @@
     });
   });
 </script>
+<script>
+  document.querySelectorAll('.exp-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling;
+      content.style.maxHeight
+        ? content.style.maxHeight = null
+        : content.style.maxHeight = content.scrollHeight + "px";
+    });
+  });
+</script>
+<script>
+  document.querySelectorAll('.tree-branch').forEach(branch => {
+    branch.addEventListener('click', () => {
+      const children = branch.nextElementSibling;
 
+      document.querySelectorAll('.tree-children').forEach(c => {
+        if (c !== children) c.style.maxHeight = null;
+      });
+
+      children.style.maxHeight
+        ? children.style.maxHeight = null
+        : children.style.maxHeight = children.scrollHeight + "px";
+    });
+  });
+</script>
+<script>
+  // OSINT Framework style tree toggle
+  document.querySelectorAll('.osint-branch-title').forEach(title => {
+    title.addEventListener('click', () => {
+      const children = title.nextElementSibling;
+      const isExpanded = title.classList.contains('expanded');
+      
+      if (isExpanded) {
+        title.classList.remove('expanded');
+        children.classList.remove('expanded');
+      } else {
+        title.classList.add('expanded');
+        children.classList.add('expanded');
+      }
+    });
+  });
+</script>
 </body>
 </html>
